@@ -1,0 +1,36 @@
+{
+  "version": 9,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 30
+  },
+  "configurePresets": [
+    {
+      "name": "x64-base",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "installDir": "${sourceDir}/out/install/${presetName}",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      }
+    },
+    {
+      "name": "x64-linux",
+      "hidden": false,
+      "inherits": "x64-base",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER": "clang++",
+        "opentelemetry-cpp_ROOT": "/home/orphee/apps/otel-cpp",
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+        "CMAKE_LINKER_TYPE": "LLD"
+      }
+    }
+  ]
+}
